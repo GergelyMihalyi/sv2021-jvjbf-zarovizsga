@@ -21,12 +21,14 @@ public class Player {
 
     private String name;
 
+    @Column(name = "birth_date")
     private LocalDate birthDate;
 
+    @Enumerated(EnumType.STRING)
     private PositionType position;
 
     @ManyToOne
-    @JoinColumn(name = "team_id")
+    @JoinColumn(name = "team_id", referencedColumnName = "id")
     private Team team;
 
     public Player(String name) {
@@ -38,5 +40,11 @@ public class Player {
         this.birthDate = birthDate;
         this.position = position;
         this.team = team;
+    }
+
+    public Player(String name, LocalDate birthDate, PositionType position) {
+        this.name = name;
+        this.birthDate = birthDate;
+        this.position = position;
     }
 }
